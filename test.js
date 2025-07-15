@@ -25,6 +25,7 @@ const fixtures = [
 	'test@foo-bar.com',
 	'foo@x.solutions',
 	'foo@[IPv6:2001:db8::2]',
+	'!#$%&amp;`*+/=?^`{|}~@sindresorhus.com',
 	// https://github.com/sindresorhus/email-regex/issues/2#issuecomment-404654677
 	'email@example.com',
 	'firstname.lastname@example.com',
@@ -69,7 +70,6 @@ for (const [input, expected] of fixturesCustomMatch) {
 }
 
 const fixturesNot = [
-	'!#$%&amp;`*+/=?^`{|}~@sindresorhus.com', // &amp; is not a valid
 	'@',
 	'@io',
 	'@sindresorhus.com',

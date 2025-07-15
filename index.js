@@ -2,9 +2,9 @@ export default function emailRegex(options) {
 	options = {
 		exact: false,
 		allowLocalDomain: true,
-		allowAmpersandEntity: false,
-		...options,
-	}
+		allowAmpersandEntity: true,
+		...options
+	};
 
 	// RFC 5322 (https://datatracker.ietf.org/doc/html/rfc5322)
 	const alpha = '[A-Za-z]';
