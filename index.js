@@ -1,11 +1,15 @@
-export default function emailRegex({exact, allowLocalDomain, allowAmpersandEntity} = {
-	allowLocalDomain: true,
-	allowAmpersandEntity: true,
-}) {
+export default function emailRegex(options) {
+	options = {
+		exact: false,
+		allowLocalDomain: true,
+		allowAmpersandEntity: false,
+		...options,
+	}
+
 	// RFC 5322 (https://datatracker.ietf.org/doc/html/rfc5322)
 	const alpha = '[A-Za-z]';
 	const digit = '\\d';
-	const atext = `(?:${alpha}|${digit}|!|#|\\$|%|&|'|\\*|\\+|-|\\/|=|\\?|\\^|_|\`|{|\\||}|~${allowAmpersandEntity ? '|&amp;' : ''})`;
+	const atext = `(?:${alpha}|${digit}|!|#|\\$|%|&|'|\\*|\\+|-|\\/|=|\\?|\\^|_|\`|{|\\||}|~${options.allowAmpersandEntity ? '|&amp;' : ''})`;
 	const dotAtomText = `(?:${atext}+(?:\\.${atext}+)+)`;
 	const dotAtom = `${dotAtomText}`;
 	const dquote = '"';
@@ -32,9 +36,9 @@ export default function emailRegex({exact, allowLocalDomain, allowAmpersandEntit
 	const obsDtext = `(?:${obsNoWsCtl}|${quotedPair})`;
 	const dtext = `(?:[\\x21-\\x5a]|[\\x5e-\\x7e]|${obsDtext})`;
 	const domainLiteral = `(?:\\[(?:${fws}?${dtext})*${fws}?])`;
-	const obsDomain = `(?:${atom}(?:\\.${atom})${allowLocalDomain ? '*' : '+'})`
+	const obsDomain = `(?:${atom}(?:\\.${atom})${options.allowLocalDomain ? '*' : '+'})`;
 	const domain = `(?:${dotAtom}|${domainLiteral}|${obsDomain})`;
 	const addrSpec = `(?:${localPart}@${domain})`;
 
-	return exact ? new RegExp(`^${addrSpec}$`) : new RegExp(addrSpec, 'g');
+	return options.exact ? new RegExp(`^${addrSpec}$`) : new RegExp(addrSpec, 'g');
 }
