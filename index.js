@@ -28,10 +28,11 @@ const localPart = `(?:${dotAtom}|${quotedString}|${obsLocalPart})`;
 const obsDtext = `(?:${obsNoWsCtl}|${quotedPair})`;
 const dtext = `(?:[\\x21-\\x5a]|[\\x5e-\\x7e]|${obsDtext})`;
 const domainLiteral = `(?:\\[(?:${fws}?${dtext})*${fws}?])`;
-const obsDomain = `(?:${atom}(?:\\.${atom})*)`;
-const domain = `(?:${dotAtom}|${domainLiteral}|${obsDomain})`;
-const addrSpec = `(?:${localPart}@${domain})`;
 
-export default function emailRegex({exact} = {}) {
+export default function emailRegex({exact, allowLocalDomain} = {}) {
+	const obsDomain = `(?:${atom}(?:\\.${atom})${allowLocalDomain ? '*' : '+'})`
+	const domain = `(?:${dotAtom}|${domainLiteral}|${obsDomain})`;
+	const addrSpec = `(?:${localPart}@${domain})`;
+
 	return exact ? new RegExp(`^${addrSpec}$`) : new RegExp(addrSpec, 'g');
 }
