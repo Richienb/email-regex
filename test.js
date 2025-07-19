@@ -113,6 +113,11 @@ test('exact', t => {
 	}
 });
 
+test('allowAmpersandEntity', t => {
+	t.true(emailRegex({exact: true, allowAmpersandEntity: true}).test('!#$%&amp;`*+/=?^`{|}~@sindresorhus.com'));
+	t.false(emailRegex({exact: true, allowAmpersandEntity: false}).test('!#$%&amp;`*+/=?^`{|}~@sindresorhus.com'));
+});
+
 test('failures', t => {
 	for (const fixture of fixturesNot) {
 		t.false(emailRegex({exact: true}).test(fixture), fixture); // eslint-disable-line ava/assertion-arguments
