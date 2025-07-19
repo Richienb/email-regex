@@ -7,6 +7,20 @@ export type Options = {
 	@default false
 	*/
 	readonly exact?: boolean;
+
+	/**
+	Allow the domain of an email address to be a local domain (e.g. `user@internal`). Specifically, allow it to have only one dot-separated component.
+
+	@default true
+	*/
+	readonly allowInternalDomain?: boolean;
+
+	/**
+	Allow the ampersand HTML entity `&amp;` to correspond to an ampersand `&` in the email address.
+
+	@default true
+	 */
+	readonly allowAmpersandEntity?: boolean;
 };
 
 /**

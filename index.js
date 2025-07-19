@@ -1,7 +1,7 @@
 export default function emailRegex(options) {
 	options = {
 		exact: false,
-		allowLocalDomain: true,
+		allowInternalDomain: true,
 		allowAmpersandEntity: true,
 		...options,
 	};
@@ -36,7 +36,7 @@ export default function emailRegex(options) {
 	const obsDtext = `(?:${obsNoWsCtl}|${quotedPair})`;
 	const dtext = `(?:[\\x21-\\x5a]|[\\x5e-\\x7e]|${obsDtext})`;
 	const domainLiteral = `(?:\\[(?:${fws}?${dtext})*${fws}?])`;
-	const obsDomain = `(?:${atom}(?:\\.${atom})${options.allowLocalDomain ? '*' : '+'})`;
+	const obsDomain = `(?:${atom}(?:\\.${atom})${options.allowInternalDomain ? '*' : '+'})`;
 	const domain = `(?:${dotAtom}|${domainLiteral}|${obsDomain})`;
 	const addrSpec = `(?:${localPart}@${domain})`;
 
