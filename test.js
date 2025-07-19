@@ -12,6 +12,7 @@ const fixtures = [
 	'test@e.com',
 	'test@xn--hxajbheg2az3al.xn--jxalpdlp',
 	'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghiklm@sindresorhus.com',
+	'!#$%&amp;`*+/=?^`{|}~@sindresorhus.com',
 	'test@g--a.com',
 	'a@abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghikl.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghikl.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghikl.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefg.hij',
 	'123@sindresorhus.com',
@@ -25,7 +26,6 @@ const fixtures = [
 	'test@foo-bar.com',
 	'foo@x.solutions',
 	'foo@[IPv6:2001:db8::2]',
-	'!#$%&amp;`*+/=?^`{|}~@sindresorhus.com',
 	// https://github.com/sindresorhus/email-regex/issues/2#issuecomment-404654677
 	'email@example.com',
 	'firstname.lastname@example.com',
@@ -52,7 +52,7 @@ const fixturesCustomMatch = new Map([
 	// https://github.com/sindresorhus/email-regex/issues/9#issue-569014279
 	['f="nr@context",c=e("gos")', 'nr@context'],
 	// https://github.com/sindresorhus/email-regex/issues/2#issuecomment-404654677
-	// ['much.”more\\ unusual”@example.com', '"more\\ unusual”@example.com'],
+	// [String.raw`much.”more\ unusual”@example.com`, String.raw`"more\ unusual”@example.com`],
 	[String.raw`very.”(),:;<>[]”.VERY.”very@\ "very”.unusual@strange.example.com`, 'unusual@strange.example.com'],
 	// ['#@%^%#$@#$@#.com', '#$@#.com'],
 	['Joe Smith email@example.com', 'email@example.com'],
