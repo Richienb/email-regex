@@ -15,10 +15,10 @@ const fixtures = [
 	'test@g--a.com',
 	'a@abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghikl.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghikl.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghikl.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefg.hij',
 	'123@sindresorhus.com',
-	'"\\a"@sindresorhus.com',
+	String.raw`"\a"@sindresorhus.com`,
 	'""@sindresorhus.com',
 	'"test"@sindresorhus.com',
-	'"\\""@sindresorhus.com',
+	String.raw`"\""@sindresorhus.com`,
 	'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghiklmn@sindresorhus.com',
 	'test@iana.co-uk',
 	'a@a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.y.z.a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.y.z.a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.y.z.a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.y.z.a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v',
@@ -45,7 +45,7 @@ const fixtures = [
 	'email@example',
 	'email@-example.com',
 	'email@example.web',
-	'email@111.222.333.44444'
+	'email@111.222.333.44444',
 ];
 
 const fixturesCustomMatch = new Map([
@@ -53,7 +53,7 @@ const fixturesCustomMatch = new Map([
 	['f="nr@context",c=e("gos")', 'nr@context'],
 	// https://github.com/sindresorhus/email-regex/issues/2#issuecomment-404654677
 	// ['much.”more\\ unusual”@example.com', '"more\\ unusual”@example.com'],
-	['very.”(),:;<>[]”.VERY.”very@\\ "very”.unusual@strange.example.com', 'unusual@strange.example.com'],
+	[String.raw`very.”(),:;<>[]”.VERY.”very@\ "very”.unusual@strange.example.com`, 'unusual@strange.example.com'],
 	// ['#@%^%#$@#$@#.com', '#$@#.com'],
 	['Joe Smith email@example.com', 'email@example.com'],
 	['email@example@example.com', 'email@example'],
@@ -61,7 +61,7 @@ const fixturesCustomMatch = new Map([
 	['email..email@example.com', 'email@example.com'],
 	['email@example.com (Joe Smith)', 'email@example.com'],
 	['just”not”right@example.com', 'right@example.com'],
-	['this\\ is"really"not\\allowed@example.com', 'allowed@example.com']
+	[String.raw`this\ is"really"not\allowed@example.com`, 'allowed@example.com'],
 ]);
 
 for (const [input, expected] of fixturesCustomMatch) {
@@ -92,7 +92,7 @@ const fixturesNot = [
 	'あいうえお@example.com',
 	'Abc..123@example.com',
 	'”(),:;<>[]@example.com',
-	'"(),:;<>[]@example.com'
+	'"(),:;<>[]@example.com',
 ];
 
 test('extract', t => {

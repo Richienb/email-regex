@@ -1,4 +1,4 @@
-export interface Options {
+export type Options = {
 	/**
 	Only match an exact string.
 
@@ -7,7 +7,7 @@ export interface Options {
 	@default false
 	*/
 	readonly exact?: boolean;
-}
+};
 
 /**
 Regular expression for matching email addresses.

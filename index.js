@@ -3,28 +3,28 @@ export default function emailRegex(options) {
 		exact: false,
 		allowLocalDomain: true,
 		allowAmpersandEntity: true,
-		...options
+		...options,
 	};
 
 	// RFC 5322 (https://datatracker.ietf.org/doc/html/rfc5322)
 	const alpha = '[A-Za-z]';
-	const digit = '\\d';
+	const digit = String.raw`\d`;
 	const atext = `(?:${alpha}|${digit}|!|#|\\$|%|&|'|\\*|\\+|-|\\/|=|\\?|\\^|_|\`|{|\\||}|~${options.allowAmpersandEntity ? '|&amp;' : ''})`;
 	const dotAtomText = `(?:${atext}+(?:\\.${atext}+)+)`;
 	const dotAtom = `${dotAtomText}`;
 	const dquote = '"';
 	const sp = ' ';
-	const htab = '\\x09';
+	const htab = String.raw`\x09`;
 	const wsp = `(?:${sp}|${htab})`;
-	const cr = '\\x0d';
-	const lf = '\\x0a';
+	const cr = String.raw`\x0d`;
+	const lf = String.raw`\x0a`;
 	const crlf = `(?:${cr}${lf})`;
 	const obsFws = `(?:${wsp}+(?:${crlf}${wsp}+)*)`;
 	const fws = `(?:(?:(?:${wsp}*${crlf})?${wsp}+)|${obsFws})`;
-	const obsNoWsCtl = '(?:[\\x01-\\x08]|\\x0b|\\x0c|[\\x0e-\\x1f]|\\x7f)';
+	const obsNoWsCtl = String.raw`(?:[\x01-\x08]|\x0b|\x0c|[\x0e-\x1f]|\x7f)`;
 	const obsQtext = `${obsNoWsCtl}`;
 	const qtext = `(?:!|[\\x23-\\x5b]|[\\x5d-\\x7e]|${obsQtext})`;
-	const vchar = '[\\x21-\\x7e]';
+	const vchar = String.raw`[\x21-\x7e]`;
 	const obsQp = `(?:\\\\(?:\\x00|${obsNoWsCtl}|${lf}|${cr}))`;
 	const quotedPair = `(?:(?:\\\\(?:${vchar}|${wsp}))|${obsQp})`;
 	const qcontent = `(?:${qtext}|${quotedPair})`;
