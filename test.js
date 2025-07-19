@@ -52,9 +52,8 @@ const fixturesCustomMatch = new Map([
 	// https://github.com/sindresorhus/email-regex/issues/9#issue-569014279
 	['f="nr@context",c=e("gos")', 'nr@context'],
 	// https://github.com/sindresorhus/email-regex/issues/2#issuecomment-404654677
-	// [String.raw`much.”more\ unusual”@example.com`, String.raw`"more\ unusual”@example.com`],
 	[String.raw`very.”(),:;<>[]”.VERY.”very@\ "very”.unusual@strange.example.com`, 'unusual@strange.example.com'],
-	// ['#@%^%#$@#$@#.com', '#$@#.com'],
+	['#@%^%#$@#$@#.com', '#@%^%#$'],
 	['Joe Smith email@example.com', 'email@example.com'],
 	['email@example@example.com', 'email@example'],
 	['.email@example.com', 'email@example.com'],
@@ -92,7 +91,8 @@ const fixturesNot = [
 	'あいうえお@example.com',
 	'Abc..123@example.com',
 	'”(),:;<>[]@example.com',
-	'"(),:;<>[]@example.com'
+	'"(),:;<>[]@example.com',
+	String.raw`much.”more\ unusual”@example.com`
 ];
 
 test('extract', t => {
