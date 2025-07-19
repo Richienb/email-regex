@@ -3,7 +3,7 @@ export default function emailRegex(options) {
 		exact: false,
 		allowInternalDomain: true,
 		allowAmpersandEntity: true,
-		...options,
+		...options
 	};
 
 	// RFC 5322 (https://datatracker.ietf.org/doc/html/rfc5322)
@@ -14,17 +14,17 @@ export default function emailRegex(options) {
 	const dotAtom = `${dotAtomText}`;
 	const dquote = '"';
 	const sp = ' ';
-	const htab = String.raw`\x09`;
+	const htab = String.raw`\u0009`;
 	const wsp = `(?:${sp}|${htab})`;
-	const cr = String.raw`\x0d`;
-	const lf = String.raw`\x0a`;
+	const cr = String.raw`\u000D`;
+	const lf = String.raw`\u000A`;
 	const crlf = `(?:${cr}${lf})`;
 	const obsFws = `(?:${wsp}+(?:${crlf}${wsp}+)*)`;
 	const fws = `(?:(?:(?:${wsp}*${crlf})?${wsp}+)|${obsFws})`;
-	const obsNoWsCtl = String.raw`(?:[\x01-\x08]|\x0b|\x0c|[\x0e-\x1f]|\x7f)`;
+	const obsNoWsCtl = String.raw`(?:[\u0001-\u0008]|\u000B|\u000C|[\u000E-\u001F]|\u007F)`;
 	const obsQtext = `${obsNoWsCtl}`;
 	const qtext = `(?:!|[\\x23-\\x5b]|[\\x5d-\\x7e]|${obsQtext})`;
-	const vchar = String.raw`[\x21-\x7e]`;
+	const vchar = String.raw`[\u0021-\u007E]`;
 	const obsQp = `(?:\\\\(?:\\x00|${obsNoWsCtl}|${lf}|${cr}))`;
 	const quotedPair = `(?:(?:\\\\(?:${vchar}|${wsp}))|${obsQp})`;
 	const qcontent = `(?:${qtext}|${quotedPair})`;
