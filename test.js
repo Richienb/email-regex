@@ -95,22 +95,37 @@ const fixturesNot = [
 	String.raw`much.”more\ unusual”@example.com`
 ];
 
+function getFirstMatch(regex, text) {
+	const matches = regex.exec(text);
+
+	if (matches) {
+		return matches[0];
+	}
+}
+
 test('extract', t => {
 	for (const fixture of fixtures) {
-		t.is((emailRegex().exec(`foo ${fixture} bar`) || [])[0], fixture);
+		t.is(getFirstMatch(emailRegex(), `foo ${fixture} bar`), fixture);
 	}
 
 	for (const [input, expected] of fixturesCustomMatch) {
-		t.is((emailRegex().exec(input) || [])[0], expected, input); // eslint-disable-line ava/assertion-arguments
+		t.is(getFirstMatch(emailRegex(), input), expected, input); // eslint-disable-line ava/assertion-arguments
 	}
 
-	t.is(emailRegex().exec('mailto:sindresorhus@gmail.com')[0], 'sindresorhus@gmail.com');
+	t.is(getFirstMatch(emailRegex(), 'mailto:sindresorhus@gmail.com'), 'sindresorhus@gmail.com');
 });
 
 test('exact', t => {
 	for (const fixture of fixtures) {
 		t.true(emailRegex({exact: true}).test(fixture), fixture); // eslint-disable-line ava/assertion-arguments
 	}
+});
+
+test('allowInternalDomain', t => {
+	t.true(emailRegex({exact: true, allowInternalDomain: true}).test('abc@sindresorhus'));
+	t.false(emailRegex({exact: true, allowInternalDomain: false}).test('abc@sindresorhus'));
+	t.is(getFirstMatch(emailRegex({exact: false, allowInternalDomain: true}), '#@%^%#$@#$@#.com'), '#@%^%#$');
+	t.is(getFirstMatch(emailRegex({exact: false, allowInternalDomain: false}), '#@%^%#$@#$@#.com'), '#$@#.com');
 });
 
 test('allowAmpersandEntity', t => {
