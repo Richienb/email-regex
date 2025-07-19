@@ -1,4 +1,4 @@
-export type Options = {
+export interface Options {
 	/**
 	Only match an exact string.
 
@@ -21,7 +21,7 @@ export type Options = {
 	@default true
 	 */
 	readonly allowAmpersandEntity?: boolean;
-};
+}
 
 /**
 Regular expression for matching email addresses.
