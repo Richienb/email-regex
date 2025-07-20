@@ -19,7 +19,7 @@ export interface Options {
 	Allow the ampersand HTML entity `&amp;` to correspond to an ampersand `&` in the email address.
 
 	@default true
-	 */
+	*/
 	readonly allowAmpersandEntity?: boolean;
 }
 
