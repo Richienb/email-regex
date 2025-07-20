@@ -38,7 +38,7 @@ export default function emailRegex(options) {
 	const domainLiteral = String.raw`(?:\[(?:${fws}?${dtext})*${fws}?])`;
 	const obsDomain = String.raw`(?:${atom}(?:\.${atom})${options.allowInternalDomain ? '*' : '+'})`;
 	const domain = `(?:${dotAtom}|${domainLiteral}|${obsDomain})`;
-	const addrSpec = `(?:${localPart}@${domain})`;
+	const addrSpec = `${localPart}@${domain}`;
 
 	return options.exact ? new RegExp(`^${addrSpec}$`) : new RegExp(addrSpec, 'g');
 }
