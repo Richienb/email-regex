@@ -13,7 +13,7 @@ export interface Options {
 
 	@default true
 	*/
-	readonly allowInternalDomain?: boolean;
+	readonly allowSingleLabelDomain?: boolean;
 
 	/**
 	Allow the ampersand HTML entity `&amp;` to correspond to an ampersand `&` in the email address.

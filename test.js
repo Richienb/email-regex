@@ -121,11 +121,11 @@ test('exact', t => {
 	}
 });
 
-test('allowInternalDomain', t => {
-	t.true(emailRegex({exact: true, allowInternalDomain: true}).test('abc@sindresorhus'));
-	t.false(emailRegex({exact: true, allowInternalDomain: false}).test('abc@sindresorhus'));
-	t.is(getFirstMatch(emailRegex({exact: false, allowInternalDomain: true}), '#@%^%#$@#$@#.com'), '#@%^%#$');
-	t.is(getFirstMatch(emailRegex({exact: false, allowInternalDomain: false}), '#@%^%#$@#$@#.com'), '#$@#.com');
+test('allowSingleLabelDomain', t => {
+	t.true(emailRegex({exact: true, allowSingleLabelDomain: true}).test('abc@sindresorhus'));
+	t.false(emailRegex({exact: true, allowSingleLabelDomain: false}).test('abc@sindresorhus'));
+	t.is(getFirstMatch(emailRegex({exact: false, allowSingleLabelDomain: true}), '#@%^%#$@#$@#.com'), '#@%^%#$');
+	t.is(getFirstMatch(emailRegex({exact: false, allowSingleLabelDomain: false}), '#@%^%#$@#$@#.com'), '#$@#.com');
 });
 
 test('allowAmpersandEntity', t => {

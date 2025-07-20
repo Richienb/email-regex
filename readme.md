@@ -48,7 +48,7 @@ Only match an exact string.
 
 Useful with `RegExp#test` to check if a string is an email address.
 
-##### allowInternalDomain
+##### allowSingleLabelDomain
 
 Type: `boolean`\
 Default: `true`
