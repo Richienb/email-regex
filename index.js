@@ -23,9 +23,9 @@ export default function emailRegex(options) {
 	const fws = `(?:(?:(?:${wsp}*${crlf})?${wsp}+)|${obsFws})`;
 	const obsNoWsCtl = String.raw`(?:[\u0001-\u0008]|\u000B|\u000C|[\u000E-\u001F]|\u007F)`;
 	const obsQtext = `${obsNoWsCtl}`;
-	const qtext = String.raw`(?:!|[\x23-\x5b]|[\x5d-\x7e]|${obsQtext})`;
+	const qtext = String.raw`(?:!|[\u0023-\u005B]|[\u005D-\u007E]|${obsQtext})`;
 	const vchar = String.raw`[\u0021-\u007E]`;
-	const obsQp = String.raw`(?:\\(?:\x00|${obsNoWsCtl}|${lf}|${cr}))`;
+	const obsQp = String.raw`(?:\\(?:\u0000|${obsNoWsCtl}|${lf}|${cr}))`;
 	const quotedPair = String.raw`(?:(?:\\(?:${vchar}|${wsp}))|${obsQp})`;
 	const qcontent = `(?:${qtext}|${quotedPair})`;
 	const quotedString = `(?:${dquote}(?:${fws}?${qcontent})*${fws}?${dquote})`;
@@ -34,7 +34,7 @@ export default function emailRegex(options) {
 	const obsLocalPart = String.raw`(?:${word}(?:\.${word})*)`;
 	const localPart = `(?:${dotAtom}|${quotedString}|${obsLocalPart})`;
 	const obsDtext = `(?:${obsNoWsCtl}|${quotedPair})`;
-	const dtext = String.raw`(?:[\x21-\x5a]|[\x5e-\x7e]|${obsDtext})`;
+	const dtext = String.raw`(?:[\u0021-\u005A]|[\u005E-\u007E]|${obsDtext})`;
 	const domainLiteral = String.raw`(?:\[(?:${fws}?${dtext})*${fws}?])`;
 	const obsDomain = String.raw`(?:${atom}(?:\.${atom})${options.allowInternalDomain ? '*' : '+'})`;
 	const domain = `(?:${dotAtom}|${domainLiteral}|${obsDomain})`;
