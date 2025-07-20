@@ -9,7 +9,7 @@ export default function emailRegex(options) {
 	// RFC 5322 (https://datatracker.ietf.org/doc/html/rfc5322)
 	const alpha = '[A-Za-z]';
 	const digit = String.raw`\d`;
-	const atext = String.raw`(?:${alpha}|${digit}|!|#|\$|%|&|'|\*|\+|-|\/|=|\?|\^|_|\`|{|\||}|~${options.allowAmpersandEntity ? '|&amp;' : ''})`;
+	const atext = String.raw`(?:${alpha}|${digit}|[!#$%&'*+\-/=?^_\`{|}~]${options.allowAmpersandEntity ? '|&amp;' : ''})`;
 	const dotAtomText = String.raw`(?:${atext}+(?:\.${atext}+)+)`;
 	const dotAtom = `${dotAtomText}`;
 	const dquote = '"';
