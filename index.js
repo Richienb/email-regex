@@ -9,8 +9,8 @@ export default function emailRegex(options) {
 	// RFC 5322 (https://datatracker.ietf.org/doc/html/rfc5322)
 	const alpha = '[A-Za-z]';
 	const digit = String.raw`\d`;
-	const atext = `(?:${alpha}|${digit}|!|#|\\$|%|&|'|\\*|\\+|-|\\/|=|\\?|\\^|_|\`|{|\\||}|~${options.allowAmpersandEntity ? '|&amp;' : ''})`;
-	const dotAtomText = `(?:${atext}+(?:\\.${atext}+)+)`;
+	const atext = String.raw`(?:${alpha}|${digit}|!|#|\$|%|&|'|\*|\+|-|\/|=|\?|\^|_|\`|{|\||}|~${options.allowAmpersandEntity ? '|&amp;' : ''})`;
+	const dotAtomText = String.raw`(?:${atext}+(?:\.${atext}+)+)`;
 	const dotAtom = `${dotAtomText}`;
 	const dquote = '"';
 	const sp = ' ';
@@ -23,20 +23,20 @@ export default function emailRegex(options) {
 	const fws = `(?:(?:(?:${wsp}*${crlf})?${wsp}+)|${obsFws})`;
 	const obsNoWsCtl = String.raw`(?:[\u0001-\u0008]|\u000B|\u000C|[\u000E-\u001F]|\u007F)`;
 	const obsQtext = `${obsNoWsCtl}`;
-	const qtext = `(?:!|[\\x23-\\x5b]|[\\x5d-\\x7e]|${obsQtext})`;
+	const qtext = String.raw`(?:!|[\x23-\x5b]|[\x5d-\x7e]|${obsQtext})`;
 	const vchar = String.raw`[\u0021-\u007E]`;
-	const obsQp = `(?:\\\\(?:\\x00|${obsNoWsCtl}|${lf}|${cr}))`;
-	const quotedPair = `(?:(?:\\\\(?:${vchar}|${wsp}))|${obsQp})`;
+	const obsQp = String.raw`(?:\\(?:\x00|${obsNoWsCtl}|${lf}|${cr}))`;
+	const quotedPair = String.raw`(?:(?:\\(?:${vchar}|${wsp}))|${obsQp})`;
 	const qcontent = `(?:${qtext}|${quotedPair})`;
 	const quotedString = `(?:${dquote}(?:${fws}?${qcontent})*${fws}?${dquote})`;
 	const atom = `${atext}+`;
 	const word = `(?:${atom}|${quotedString})`;
-	const obsLocalPart = `(?:${word}(?:\\.${word})*)`;
+	const obsLocalPart = String.raw`(?:${word}(?:\.${word})*)`;
 	const localPart = `(?:${dotAtom}|${quotedString}|${obsLocalPart})`;
 	const obsDtext = `(?:${obsNoWsCtl}|${quotedPair})`;
-	const dtext = `(?:[\\x21-\\x5a]|[\\x5e-\\x7e]|${obsDtext})`;
-	const domainLiteral = `(?:\\[(?:${fws}?${dtext})*${fws}?])`;
-	const obsDomain = `(?:${atom}(?:\\.${atom})${options.allowInternalDomain ? '*' : '+'})`;
+	const dtext = String.raw`(?:[\x21-\x5a]|[\x5e-\x7e]|${obsDtext})`;
+	const domainLiteral = String.raw`(?:\[(?:${fws}?${dtext})*${fws}?])`;
+	const obsDomain = String.raw`(?:${atom}(?:\.${atom})${options.allowInternalDomain ? '*' : '+'})`;
 	const domain = `(?:${dotAtom}|${domainLiteral}|${obsDomain})`;
 	const addrSpec = `(?:${localPart}@${domain})`;
 
