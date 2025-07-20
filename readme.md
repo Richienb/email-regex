@@ -58,7 +58,7 @@ Allow emails with a domain that doesn't have a dot, such as `user@localhost` or 
 ##### allowAmpersandEntity
 
 Type: `boolean`\
-Default: `true`
+Default: `false`
 
 Allow the ampersand HTML entity `&amp;` to correspond to an ampersand `&` in the email address.
 

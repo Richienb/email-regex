@@ -12,7 +12,6 @@ const fixtures = [
 	'test@e.com',
 	'test@xn--hxajbheg2az3al.xn--jxalpdlp',
 	'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghiklm@sindresorhus.com',
-	'!#$%&amp;`*+/=?^`{|}~@sindresorhus.com',
 	'test@g--a.com',
 	'a@abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghikl.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghikl.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghikl.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefg.hij',
 	'123@sindresorhus.com',
@@ -80,6 +79,7 @@ const fixturesNot = [
 	'mailto:sindresorhus@gmail.com',
 	'foo.example.com',
 	'test.@example.com',
+	'!#$%&amp;`*+/=?^`{|}~@sindresorhus.com',
 	// https://github.com/sindresorhus/email-regex/issues/9#issue-569014279
 	'f="nr@context",c=e("gos")',
 	// https://github.com/sindresorhus/email-regex/issues/2#issuecomment-404654677

@@ -2,7 +2,7 @@ export default function emailRegex(options) {
 	options = {
 		exact: false,
 		allowSingleLabelDomain: true,
-		allowAmpersandEntity: true,
+		allowAmpersandEntity: false,
 		...options
 	};
 
