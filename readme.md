@@ -53,7 +53,7 @@ Useful with `RegExp#test` to check if a string is an email address.
 Type: `boolean`\
 Default: `true`
 
-Allow the domain of an email address to be a local domain (e.g. `user@internal`). Specifically, allow it to have only one dot-seperated component.
+Allow emails with a domain that doesn't have a dot, such as `user@localhost` or `user@internal`.
 
 ##### allowAmpersandEntity
 

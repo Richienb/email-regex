@@ -9,7 +9,7 @@ export interface Options {
 	readonly exact?: boolean;
 
 	/**
-	Allow the domain of an email address to be a local domain (e.g. `user@internal`). Specifically, allow it to have only one dot-separated component.
+	Allow emails with a domain that doesn't have a dot, such as `user@localhost` or `user@internal`.
 
 	@default true
 	*/
