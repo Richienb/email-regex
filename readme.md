@@ -48,6 +48,20 @@ Only match an exact string.
 
 Useful with `RegExp#test` to check if a string is an email address.
 
+##### allowSingleLabelDomain
+
+Type: `boolean`\
+Default: `true`
+
+Allow emails with a domain that doesn't have a dot, such as `user@localhost` or `user@internal`.
+
+##### allowAmpersandEntity
+
+Type: `boolean`\
+Default: `false`
+
+Allow the ampersand HTML entity `&amp;` to correspond to an ampersand `&` in the email address.
+
 ## Important
 
 If you run the regex against untrusted user input in a server context, you should [give it a timeout](https://github.com/sindresorhus/super-regex). It's also a good idea to limit the input to a reasonable length.

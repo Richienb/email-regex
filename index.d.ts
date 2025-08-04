@@ -7,6 +7,20 @@ export interface Options {
 	@default false
 	*/
 	readonly exact?: boolean;
+
+	/**
+	Allow emails with a domain that doesn't have a dot, such as `user@localhost` or `user@internal`.
+
+	@default true
+	*/
+	readonly allowSingleLabelDomain?: boolean;
+
+	/**
+	Allow the ampersand HTML entity `&amp;` to correspond to an ampersand `&` in the email address.
+
+	@default false
+	*/
+	readonly allowAmpersandEntity?: boolean;
 }
 
 /**
