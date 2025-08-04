@@ -3,7 +3,7 @@ export default function emailRegex(options) {
 		exact: false,
 		allowSingleLabelDomain: true,
 		allowAmpersandEntity: false,
-		...options
+		...options,
 	};
 
 	// RFC 5322 (https://datatracker.ietf.org/doc/html/rfc5322)

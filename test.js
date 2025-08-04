@@ -44,7 +44,7 @@ const fixtures = [
 	'email@example',
 	'email@-example.com',
 	'email@example.web',
-	'email@111.222.333.44444'
+	'email@111.222.333.44444',
 ];
 
 const fixturesCustomMatch = new Map([
@@ -59,7 +59,7 @@ const fixturesCustomMatch = new Map([
 	['email..email@example.com', 'email@example.com'],
 	['email@example.com (Joe Smith)', 'email@example.com'],
 	['just”not”right@example.com', 'right@example.com'],
-	[String.raw`this\ is"really"not\allowed@example.com`, 'allowed@example.com']
+	[String.raw`this\ is"really"not\allowed@example.com`, 'allowed@example.com'],
 ]);
 
 for (const [input, expected] of fixturesCustomMatch) {
@@ -92,7 +92,7 @@ const fixturesNot = [
 	'Abc..123@example.com',
 	'”(),:;<>[]@example.com',
 	'"(),:;<>[]@example.com',
-	String.raw`much.”more\ unusual”@example.com`
+	String.raw`much.”more\ unusual”@example.com`,
 ];
 
 function getFirstMatch(regex, text) {
