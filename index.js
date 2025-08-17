@@ -7,7 +7,8 @@ export default function emailRegex(options) {
 	};
 
 	// RFC 5322 (https://datatracker.ietf.org/doc/html/rfc5322)
-	const atext = String.raw`(?:[A-Za-z\d!#$%&'*+\-/=?^_\`{|}~]${options.allowAmpersandEntity ? '|&amp;' : ''})`;
+	const atextInner = String.raw`[A-Za-z\d!#$%&'*+\-/=?^_\`{|}~]`;
+	const atext = options.allowAmpersandEntity ? `(?:${atextInner}|&amp;)` : atextInner;
 	const dquote = '"';
 	const sp = ' ';
 	const htab = String.raw`\u0009`;
