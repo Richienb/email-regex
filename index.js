@@ -10,9 +10,7 @@ export default function emailRegex(options) {
 	const atextInner = String.raw`[A-Za-z\d!#$%&'*+\-/=?^_\`{|}~]`;
 	const atext = options.allowAmpersandEntity ? `(?:${atextInner}|&amp;)` : atextInner;
 	const dquote = '"';
-	const sp = ' ';
-	const htab = String.raw`\u0009`;
-	const wsp = `(?:${sp}|${htab})`;
+	const wsp = String.raw`[ \u0009]`;
 	const cr = String.raw`\u000D`;
 	const lf = String.raw`\u000A`;
 	const obsNoWsCtl = String.raw`(?:[\u0001-\u0008]|\u000B|\u000C|[\u000E-\u001F]|\u007F)`;
