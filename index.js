@@ -25,7 +25,7 @@ export default function emailRegex(options) {
 	const atom = `${atext}+`;
 	const word = `(?:${atom}|${quotedString})`;
 	const dotAtomOrObsLocalPart = String.raw`(?:${word}(?:\.${word})*)`; // Overlap between dot-atom and obs-local-part
-	const localPart = `(?:${quotedString}|${dotAtomOrObsLocalPart})`;
+	const localPart = `(?:${dotAtomOrObsLocalPart}|${quotedString})`;
 	const obsDtext = `(?:${obsNoWsCtl}|${quotedPair})`;
 	const dtext = String.raw`(?:[\u0021-\u005A]|[\u005E-\u007E]|${obsDtext})`;
 	const domainLiteral = String.raw`(?:\[${dtext}*])`;
